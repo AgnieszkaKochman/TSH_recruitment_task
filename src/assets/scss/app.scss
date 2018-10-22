@@ -6,7 +6,26 @@
   margin-bottom: 8px;
 }
 
-.gh-username img{
+.gh-description {
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &.level-right {
+    align-items: flex-start;
+
+    .level-item {
+      margin: 0;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.gh-description__item {
+  padding: 0 5px;
+}
+
+.gh-user-avatar img{
   width: 32px;
 }
 
