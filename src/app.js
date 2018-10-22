@@ -1,5 +1,6 @@
 import './assets/scss/app.scss';
 import $ from 'cash-dom';
+import {fetch as fetchPolyfill} from 'whatwg-fetch'
 
 
 export class App {
@@ -8,9 +9,11 @@ export class App {
 
     $('.load-username').on('click', function (e) {
       let userName = $('.username.input').val();
-
-      fetch('https://api.github.com/users/' + userName)
-        .then((response)=> {response.json})
+     
+      fetchPolyfill('https://api.github.com/users/' + userName)
+        .then((response)=> {
+          return response.json()
+        })
         .then(function (body) {
           self.profile = body;
           self.update_profile();
