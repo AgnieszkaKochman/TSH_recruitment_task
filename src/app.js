@@ -15,6 +15,7 @@ export class App {
 
       if (self.checkInput(userName)) {
         self.markInputValid()
+        self.showSpinner()
 
         fetchPolyfill(API_URL + userName)
         .then((response)=> {
@@ -29,6 +30,7 @@ export class App {
               return response.json()
             })
             .then((body) => {
+              self.hideSpinner()
               let index = 0
               $('#user-timeline').empty()
 
@@ -116,5 +118,15 @@ export class App {
     if (!$('.username.input').hasClass('invalid-input')) {
       $('.username.input').addClass('invalid-input')
     }
+  }
+
+  showSpinner() {
+    $('#spinner').removeClass('is-hidden')
+    $('.container').addClass('is-hidden')
+  }
+
+  hideSpinner() {
+    $('#spinner').addClass('is-hidden')
+    $('.container').removeClass('is-hidden')
   }
 }
